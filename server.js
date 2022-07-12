@@ -1,7 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js';
+import connectDB from './Config/db.js';
+import userRoute from './Routes/userRoute.js'
 
 dotenv.config();
 await connectDB();
@@ -10,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(morgan(':method :url :status :response-time ms'));
+
+app.use('/user',userRoute);
 
 const PORT = process.env.PORT || 3001;
 
